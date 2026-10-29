@@ -1,0 +1,19 @@
+import pandas as pd
+import sqlite3
+csv_file = "C:/Users/gaura/Downloads/students.csv"
+db_file = "students.db"
+data = pd.read_csv("C:/Users/gaura/Downloads/students.csv")
+print("csv data:")
+print(data)
+connection = sqlite3.connect(db_file)
+data.to_sql(
+    "students",
+    connection,
+    if_exists="replace",
+    index=False
+    )
+print("\n csv successfully converted to sql")
+result = pd.read_sql_query("select * from students", connection)
+print("\n data stored in database")
+connection.close()
+print("\n database file created successfully :", db_file)

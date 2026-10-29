@@ -1,0 +1,15 @@
+import pandas as pd
+df = pd.read_csv("C:/Users/gaura/Downloads/students.csv")
+
+# Convert to XML
+xml_data = df.to_xml(
+root_name="students",
+row_name="name",
+index=False
+)
+
+# Save XML file
+with open("output.xml", "w", encoding="utf-8") as file:
+    file.write(xml_data)
+
+print("CSV converted to XML successfully!")
